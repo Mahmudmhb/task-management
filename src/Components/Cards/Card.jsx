@@ -19,10 +19,7 @@ const Card = ({ task }) => {
       status: "Complete",
       update: "Update",
     };
-    const res = await axiosPublic.put(`/tasks/${task._id}`, statusUpdates, {
-      withCredentials: true,
-    });
-    console.log(res.data);
+    const res = await axiosPublic.put(`/tasks/${task._id}`, statusUpdates);
     refetch();
   };
 
@@ -66,7 +63,7 @@ const Card = ({ task }) => {
               </h1>
               <p className="h-40 flex items-center">{task.description}</p>
               <p className="my-5 text-white">
-                {task.date}{" "}
+                {task.date}
                 {task.update === "Update" && (
                   <>
                     <div className=" ml-5 badge badge-secondary">

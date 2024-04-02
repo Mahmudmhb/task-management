@@ -10,7 +10,7 @@ const Dashboard = () => {
       <div className="md:flex md:flex-row flex-col  gap-y-3">
         <div className="flex   md:justify-between justify-around   md:bg-none lg:bg-none  sticky top-0 pt-5 md:pt-0  border-b md:border-none mb-5 ">
           <div className=" ">
-            <div className="drawer z-50 md:hidden lg:hidden">
+            <div className="drawer z-[100] md:hidden lg:hidden">
               <input id="my-drawer" type="checkbox" className="drawer-toggle" />
               <div className="drawer-content">
                 {/* Page content here */}
@@ -43,7 +43,7 @@ const Dashboard = () => {
             </h1>
           </div>
         </div>
-        <div className="w-full">
+        <div className="w-full py-10">
           <Outlet></Outlet>
         </div>
       </div>

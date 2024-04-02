@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect, useState } from "react";
@@ -11,7 +10,6 @@ const UpdateTask = () => {
   const { user } = useAuth();
   const { id } = useParams();
   const [preTask, setPreTask] = useState([]);
-  const [startDate, setStartDate] = useState(new Date());
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const {
@@ -30,7 +28,7 @@ const UpdateTask = () => {
     const newTask = {
       heading: data.heading,
       description: data.description,
-      date: startDate,
+      date: data.date,
       status: "incomplate",
       userEmail: user.email,
       update: "Update",
@@ -83,20 +81,13 @@ const UpdateTask = () => {
           )}
         </div>
         <div className="text-yellow-500  ">
-          {/* <input
-            {...register("date", { required: true })}
+          <input
             type="date"
             name=""
             id=""
-            aria-invalid={errors.date ? "true" : "false"}
-            className="border  border-[#ffb300] mt-5"
-          /> */}
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            {...register("date")}
-            required
             defaultValue={preTask.date}
+            {...register("date", { required: true })}
+            required
             className="border  border-[#ffb300] mt-5"
           />
         </div>

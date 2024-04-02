@@ -1,15 +1,12 @@
 import { useForm } from "react-hook-form";
-import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth/useAuth";
 import { useNavigate } from "react-router-dom";
 const AddTask = () => {
   const { user } = useAuth();
-  const [startDate, setStartDate] = useState(new Date());
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
@@ -24,13 +21,12 @@ const AddTask = () => {
     const newTask = {
       heading: data.heading,
       description: data.description,
-      date: startDate,
+      date: data.date,
       status: "incomplete",
       userEmail: user.email,
     };
-    const res = await axiosPublic.post("/tasks", newTask, {
-      withCredentials: true,
-    });
+    console.log(newTask);
+    const res = await axiosPublic.post("/tasks", newTask);
     console.log(res.data);
     if (res.data.acknowledged) {
       Swal.fire({
@@ -76,18 +72,15 @@ const AddTask = () => {
           )}
         </div>
         <div className="text-yellow-500  ">
-          {/* <input
-            {...register("date", { required: true })}
+          {/* <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          /> */}
+          <input
             type="date"
             name=""
             id=""
-            aria-invalid={errors.date ? "true" : "false"}
-            className="border  border-[#ffb300] mt-5"
-          /> */}
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            {...register("date")}
+            {...register("date", { required: true })}
             required
             className="border  border-[#ffb300] mt-5"
           />
