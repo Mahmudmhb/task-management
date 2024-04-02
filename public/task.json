@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+      "heading": "Meeting with Client",
+      "date": "2024-04-01",
+      "description": "Discuss project requirements and timeline."
+    },
+    {
+      "id": 2,
+      "heading": "Team Lunch",
+      "date": "2024-04-05",
+      "description": "Team building activity over lunch."
+    },
+    {
+      "id": 3,
+      "heading": "Product Launch",
+      "date": "2024-04-10",
+      "description": "Launch new product version to the market."
+    }
+]
