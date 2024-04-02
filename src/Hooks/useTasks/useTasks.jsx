@@ -9,9 +9,7 @@ const useTasks = () => {
   const { data: tasks = [], refetch } = useQuery({
     queryKey: ["tasks"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/tasks/${user.email}`, {
-        withCredentials: true,
-      });
+      const res = await axiosPublic.get(`/tasks/${user.email}`);
 
       return res.data;
     },

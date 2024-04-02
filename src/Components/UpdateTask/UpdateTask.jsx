@@ -21,13 +21,9 @@ const UpdateTask = () => {
   } = useForm();
 
   useEffect(() => {
-    const res = axiosPublic
-      .get(`/task/${id}`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setPreTask(res.data);
-      });
+    const res = axiosPublic.get(`/task/${id}`).then((res) => {
+      setPreTask(res.data);
+    });
   }, [axiosPublic, id]);
   const onSubmit = async (data) => {
     // console.log("data", data, startDate);

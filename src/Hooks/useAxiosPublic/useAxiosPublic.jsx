@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://server-task-management.onrender.com",
+  withCredentials: true,
 });
 const useAxiosPublic = () => {
   return axiosPublic;
