@@ -5,11 +5,16 @@ import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth/useAuth";
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { handleLogin, handleSignGoolge } = useAuth();
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
+    console.log(data);
     const password = data.password;
     const email = data.email;
     handleLogin(email, password)
@@ -47,7 +52,7 @@ const Login = () => {
           timer: 1500,
         });
 
-        navigate("/dashboard");
+        navigate("/dashboard/taskdashboard");
       })
       .catch((error) => {
         // console.log(error);
@@ -68,15 +73,45 @@ const Login = () => {
             type="email"
             placeholder="Email"
             className="py-3 px-2 w-full border  my-2  rounded-xl"
-            {...register("email")}
+            {...register("email", { required: true })}
+            aria-invalid={errors.email ? "true" : "false"}
           />
-
+          {errors.email?.type === "required" && (
+            <p role="alert"> Please Provide your valid Email for Login</p>
+          )}
           <input
             type="password"
             placeholder="Password"
             className="py-3 px-2 w-full my-2 border rounded-xl"
-            {...register("password")}
+            {...register("password", {
+              required: true,
+              pattern: /^(?=.*[A-Z])(?=.*\d).{8,}$/,
+              minLength: 8,
+              maxLength: 16,
+            })}
+            aria-invalid={errors.password ? "true" : "false"}
           />
+          {errors.password?.type === "pattern" && (
+            <p role="alert">
+              {" "}
+              {errors.password?.message}
+              one uppercase, one number, minimum length 8 to 16 characters.
+            </p>
+          )}
+          {errors.password?.type === "minLength" && (
+            <p role="alert">
+              {" "}
+              {errors.password?.message}
+              minimum length 8 characters.
+            </p>
+          )}
+          {errors.password?.type === "maxLength" && (
+            <p role="alert">
+              {" "}
+              {errors.password?.message}
+              maximum length 16 characters.
+            </p>
+          )}
 
           <button
             type="submit"

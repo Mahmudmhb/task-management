@@ -13,6 +13,8 @@ Here's a breakdown of what you can expect:
 
 - Task Validation: When adding a task, users must provide a heading with a minimum of 20 words and maximum of 50 words, and a description with a minimum of 100 words and maximum of 200 words.
 
+- Password Validation: A password contains at least one uppercase letter, at least one number, and has a minimum length of 8 characters to 16 characters .
+
 - Responsiveness: The website is designed to be responsive, providing an optimal viewing and interaction experience across various devices.
 
 With these features in place, our Task Management application offers a user-friendly and efficient platform for organizing tasks effectively.
